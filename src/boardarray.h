@@ -32,7 +32,30 @@ class BoardArray : public Board {
             array[count] = *entry;
             // TODO: IMPLEMENT THIS FUNCTION
             // ALGORITHM IS PROVIDED IN INSTRUCTIONS.TXT
-            entry->name;
+            int pos = 0;
+            while (pos < index && !entry->compare(&array[pos])) {
+                pos++;
+            }
+        
+            if (index == SIZE && pos == SIZE) {
+                cout << entry->name << "'s score is too low to be added!" << endl;
+                return;
+            }
+        
+            int last;
+            if (index < SIZE) {
+                last = index;
+            } else {
+                last = SIZE - 1;
+            }
+
+            for (int i = last; i > pos; i--) {
+                array[i] = array[i - 1];
+            }
+            
+            array[pos] = *entry;
+        
+            if (index < SIZE) index++;
         }
 
         void print() {
